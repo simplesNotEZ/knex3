@@ -1,14 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const cors = require("cors");
 const app = express();
 
-const coffees = require("./routes/games");
+const games = require("./routes/games");
 
+app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-app.use("/games", coffees);
+app.use("/games", games);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
